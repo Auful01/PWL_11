@@ -7,6 +7,7 @@ use App\Http\Requests\TodoRequest;
 use App\Models\Todo;
 use App\Traits\ApiResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class TodoController extends Controller
 {
@@ -85,5 +86,9 @@ class TodoController extends Controller
             $todo->delete;
             return $this->apiSuccess($todo);
         }
+        return $this->apiError(
+            'Unauthorized',
+            Response::HTTP_UNAUTHORIZED
+        );
     }
 }
